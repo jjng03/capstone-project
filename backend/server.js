@@ -1,6 +1,7 @@
 // IMPORT DEPENDENCIES
 const express = require("express");
 const cors = require("cors");
+const dotenv = require("dotenv");
 
 // VARIABLE FOR PORT NUMBER
 const PORT = process.env.PORT || 4000;

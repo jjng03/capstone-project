@@ -1,0 +1,16 @@
+.gallery {
+  border: 1px solid black;
+  height: 80vh;
+}
+
+.movie-section1,
+.movie-section2,
+.movie-section3 {
+  border: 1px solid black;
+  height: 350px;
+}
+
+.cards {
+  border: 1px solid black;
+  height: 200px;
+}
