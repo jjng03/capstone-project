@@ -4,6 +4,10 @@
 
 ![capstone](https://user-images.githubusercontent.com/101623317/171937062-ce2fc8cc-17c6-45a5-a9a0-fff557c52e8b.png)
 
+# ERD
+![capstoneERD](https://user-images.githubusercontent.com/101623317/172198777-ffb17628-1380-41f9-bb07-8dba64eaa725.png)
+
+
 # User stories
 1) User will be able to create an account
 2) User will be able to view different movies according to their genre on the homepage
