@@ -7,21 +7,30 @@
 .movie-section2,
 .movie-section3 {
   border: 1px solid black;
-  height: 350px;
+  height: 450px;
+  display: flex;
+  flex-direction: column;
+  overflow-y: hidden;
+  color: white;
+  background-color: black;
 }
 
-.movie-section1 {
+/* .movie-section1 {
   display: flex;
-  /* justify-content: center;
-  align-items: center; */
+  flex-direction: column;
   overflow-y: hidden;
+  color: white;
+  background-color: black;
+} */
+
+.cards {
+  display: flex;
+  flex-direction: row;
 }
 
 .card-image {
-  border: 1px solid black;
-  height: 350px;
+  border: 5px solid black;
+  height: 300px;
   display: flex;
-  flex-direction: row;
-  justify-content: center;
 }
 
