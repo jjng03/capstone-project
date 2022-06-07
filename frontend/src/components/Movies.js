@@ -52,23 +52,30 @@ function Movies() {
     },[])
 
     async function getRandomMovie() {
-        const url = `https://api.themoviedb.org/3/movie/{movie_id}/videos?api_key=${apiKey}&language=en-US`
+        const url = `https://api.themoviedb.org/3/movie/338953/videos?api_key=${apiKey}&language=en-US`
 
         const response = await fetch(url)
         const data = await response.json()
-        setRandomMovie(data.results)
+        setRandomMovie(data.results[1])
     }
 
     useEffect(()=>{
         getRandomMovie();
     }, [])
     
+    // console.log(randomMovie.key)
     // const imageUrl = `https://image.tmdb.org/t/p/w500/${popularMovies.poster_path}`
     // console.log(popularMovies)
     return (
         <>
             <div className="gallery">
-                <h1>Hello World!</h1>
+                <iframe
+                src={`https://www.youtube.com/embed/${randomMovie.key}`}
+                className="video"
+                frameBorder="0"
+                allow="autoplay"
+                title="video"
+                />
             </div>
             <div className="movie-section1">
                 <div className="category">
