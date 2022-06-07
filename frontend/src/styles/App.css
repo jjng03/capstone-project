@@ -7,21 +7,14 @@
 .movie-section2,
 .movie-section3 {
   border: 1px solid black;
-  height: 450px;
+  height: 400px;
   display: flex;
   flex-direction: column;
   overflow-y: hidden;
   color: white;
   background-color: black;
+  font-size: 10px;
 }
-
-/* .movie-section1 {
-  display: flex;
-  flex-direction: column;
-  overflow-y: hidden;
-  color: white;
-  background-color: black;
-} */
 
 .cards {
   display: flex;
