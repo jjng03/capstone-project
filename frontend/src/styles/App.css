@@ -10,7 +10,18 @@
   height: 350px;
 }
 
-.cards {
-  border: 1px solid black;
-  height: 200px;
+.movie-section1 {
+  display: flex;
+  /* justify-content: center;
+  align-items: center; */
+  overflow-y: hidden;
 }
+
+.card-image {
+  border: 1px solid black;
+  height: 350px;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+

@@ -30,7 +30,7 @@ function Home() {
                 {
                     popularMovies.map((popularMovie) => (
                         <div className="card-image">
-                            <img src={ `https://image.tmdb.org/t/p/w500${popularMovie.poster_path}` } />
+                            <img src={ `https://image.tmdb.org/t/p/w500${popularMovie.poster_path}` } className="poster"/>
                         </div>
                     ))
                 }
