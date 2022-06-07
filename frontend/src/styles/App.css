@@ -41,18 +41,25 @@
   background-color: black;
 }
 
-.card-btn:hover {
+/* .card-btn:hover {
   background-color: white;
-}
+} */
 
 .modal-background {
-  background-color: gray;
-  height: 70%;
-  width: 25%;
+  background-color: #1a1a1a;
+  height: 100%;
+  /* max-width: 50%; */
+  min-width: 30%;
   border: 1px solid black;
   display: flex;
+  flex-direction: column;
   position: fixed;
   top: 0;
-  right: 40%;
-  /* margin: auto; */
+  left: 35%;
+  color: white;
+}
+
+.trailer {
+  /* border: 1px solid white; */
+  height: 500px;
 }

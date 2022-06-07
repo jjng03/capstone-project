@@ -8,6 +8,7 @@ function Movies() {
     const [upcomingMovies, setUpcomingMovies] = useState([]);
     const [topRatedMovies, setTopRatedMovies] = useState([]);
     const [randomMovie, setRandomMovie] = useState([]);
+    const [featuredMovie, setFeaturedMovie] = useState([]);
     const [openModal, setOpenModal] = useState(false);
 
     //===== API KEY ===== \\
@@ -51,23 +52,35 @@ function Movies() {
     },[])
 
     async function getRandomMovie() {
-        const url = `https://api.themoviedb.org/3/movie/338953/videos?api_key=${apiKey}&language=en-US`
-
+        // const url = `https://api.themoviedb.org/3/movie/${randomMovie.id}/videos?api_key=${apiKey}&language=en-US`
+        const url = `https://api.themoviedb.org/3/movie/popular?api_key=${apiKey}&language=en-US&page=1`
         const response = await fetch(url)
         const data = await response.json()
-        setRandomMovie(data.results[1])
+        setRandomMovie(data.results[Math.floor(Math.random() * data.results.length)])
+        // return response
     }
 
     useEffect(()=>{
         getRandomMovie();
     }, [])
     
+    async function getFeaturedMovie() {
+        const url = `https://api.themoviedb.org/3/movie/${randomMovie.id}/videos?api_key=${apiKey}&language=en-US`
+        const response = await fetch(url)
+        const data = await response.json()
+        setFeaturedMovie(data)
+    }
+
+    useEffect(()=>{
+        getFeaturedMovie();
+    },[])
+
     const handleCurrentMovie = (e)=>{
         console.log(e.target.alt)
         const findCurrentMovie = popularMovies.find((popularMovie)=>popularMovie.original_title === e.target.alt);
         setCurrentMovie(findCurrentMovie)
     }
-
+    console.log(featuredMovie)
     // console.log(randomMovie.key)
     // const imageUrl = `https://image.tmdb.org/t/p/w500/${popularMovies.poster_path}`
     // console.log(popularMovies)
@@ -75,7 +88,7 @@ function Movies() {
         <>  
             <div className="gallery">
                 <iframe
-                src={`https://www.youtube.com/embed/${randomMovie.key}?autoplay=1&mute=1&showinfo=0&controls=1`}
+                src={`https://www.youtube.com/embed/${featuredMovie.results[0].key}?autoplay=1&mute=1&showinfo=0&controls=1`}
                 className="video"
                 frameBorder="0"
                 allow="autoplay; encrypted-media"
@@ -132,7 +145,7 @@ function Movies() {
                 </div>
             </div>
             <div className="modal">
-                {openModal && <Modal closeModal={setOpenModal} currentMovie={currentMovie} />}
+                {openModal && <Modal closeModal={setOpenModal} currentMovie={currentMovie} randomMovie={randomMovie}/>}
             </div>
         </>
     )
