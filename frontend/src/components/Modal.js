@@ -14,7 +14,7 @@ function Modal( {closeModal, currentMovie, randomMovie}) {
                 <div className="trailer">
                     <iframe
                     src={`https://www.youtube.com/embed/${randomMovie.key}?autoplay=0&mute=0&showinfo=0&controls=1`}
-                    className="video"
+                    className="modal-video"
                     frameBorder="0"
                     allow="autoplay; encrypted-media"
                     title="video"

@@ -134,9 +134,11 @@ function Movies() {
                 <div className="cards">
                     {
                         upcomingMovies.map((upcomingMovie) => (
-                            <div className="card-image">
-                                <img src={ `https://image.tmdb.org/t/p/w500${upcomingMovie.poster_path}` } className="poster" alt={upcomingMovie.original_title}/>
-                            </div>
+                            <button className="card-btn" onClick={()=> {setOpenModal(true)}}>
+                                <div className="card-image">
+                                    <img src={ `https://image.tmdb.org/t/p/w500${upcomingMovie.poster_path}` } className="poster" alt={upcomingMovie.original_title}/>
+                                </div>
+                            </button>
                         ))
                     }
                 </div>
@@ -148,9 +150,11 @@ function Movies() {
                 <div className="cards">
                     {
                         topRatedMovies.map((topRatedMovie) => (
-                            <div className="card-image">
-                                <img src={ `https://image.tmdb.org/t/p/w500${topRatedMovie.poster_path}` } className="poster" alt={topRatedMovie.original_title}/>
-                            </div>
+                            <button className="card-btn" onClick={()=> {setOpenModal(true)}}>
+                                <div className="card-image">
+                                    <img src={ `https://image.tmdb.org/t/p/w500${topRatedMovie.poster_path}` } className="poster" alt={topRatedMovie.original_title}/>
+                                </div>
+                            </button>
                         ))
                     }
                 </div>
