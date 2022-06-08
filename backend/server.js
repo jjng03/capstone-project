@@ -6,6 +6,8 @@ const cors = require("cors");
 const jwt = require('jsonwebtoken');
 const mongoose = require('mongoose');
 
+require('./config/db.connection')
+
 // VARIABLE FOR PORT NUMBER
 const PORT = 4000;
 
