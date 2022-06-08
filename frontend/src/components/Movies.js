@@ -51,29 +51,33 @@ function Movies() {
         getTopRatedMovies();
     },[])
 
-    async function getRandomMovie() {
-        // const url = `https://api.themoviedb.org/3/movie/${randomMovie.id}/videos?api_key=${apiKey}&language=en-US`
-        const url = `https://api.themoviedb.org/3/movie/popular?api_key=${apiKey}&language=en-US&page=1`
-        const response = await fetch(url)
-        const data = await response.json()
-        setRandomMovie(data.results[Math.floor(Math.random() * data.results.length)])
-        // return response
-    }
+    
 
     useEffect(()=>{
+        async function getRandomMovie() {
+            // const rando = data.results[Math.floor(Math.random() * data.results.length)]
+            // const url = `https://api.themoviedb.org/3/movie/${rando}/videos?api_key=${apiKey}&language=en-US`
+            const url = `https://api.themoviedb.org/3/movie/popular?api_key=${apiKey}&language=en-US&page=1`
+            const response = await fetch(url)
+            const data = await response.json()
+            const rando = data.results[Math.floor(Math.random() * data.results.length)]
+            setRandomMovie(rando)
+            // return response
+        }
         getRandomMovie();
     }, [])
     
-    async function getFeaturedMovie() {
-        const url = `https://api.themoviedb.org/3/movie/${randomMovie.id}/videos?api_key=${apiKey}&language=en-US`
-        const response = await fetch(url)
-        const data = await response.json()
-        setFeaturedMovie(data)
-    }
+    
 
     useEffect(()=>{
+        async function getFeaturedMovie() {
+            const url = `https://api.themoviedb.org/3/movie/${randomMovie.id}/videos?api_key=${apiKey}&language=en-US`
+            const response = await fetch(url)
+            const data = await response.json()
+            setFeaturedMovie(data.results)
+        }
         getFeaturedMovie();
-    },[])
+    }, [randomMovie])
 
     const handleCurrentMovie = (e)=>{
         console.log(e.target.alt)
@@ -88,7 +92,7 @@ function Movies() {
         <>  
             <div className="gallery">
                 <iframe
-                src={`https://www.youtube.com/embed/${featuredMovie.results[0].key}?autoplay=1&mute=1&showinfo=0&controls=1`}
+                // src={featuredMovie ? `https://www.youtube.com/embed/${featuredMovie[0].key}?autoplay=1&mute=1&showinfo=0&controls=1` : null}
                 className="video"
                 frameBorder="0"
                 allow="autoplay; encrypted-media"
