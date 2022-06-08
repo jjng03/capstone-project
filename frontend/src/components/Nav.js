@@ -7,8 +7,9 @@ function Nav() {
             <Link to='/'>
                 <div className="home-link">Jetflix</div>
             </Link>
-            <div className="sign-link">Sign in</div>
-            
+            <Link to='/signin'>
+                <div className="sign-link">Sign in</div>
+            </Link>
         </div>
         
     )
