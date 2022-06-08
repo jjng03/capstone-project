@@ -88,19 +88,24 @@ function Movies() {
     // console.log(randomMovie.key)
     // const imageUrl = `https://image.tmdb.org/t/p/w500/${popularMovies.poster_path}`
     // console.log(popularMovies)
+    
     return (
         <>  
-            { featuredMovie ?
-            <div className="gallery">
-                <iframe
-                src={`https://www.youtube.com/embed/${featuredMovie[0].key}?autoplay=1&mute=1&showinfo=0&controls=1`}
-                className="video"
-                frameBorder="0"
-                allow="autoplay; encrypted-media"
-                title="video"
-                />
-            </div>
-            : <div>loading...</div>}
+            { 
+                featuredMovie && featuredMovie.map((featured) => (
+                    featured.type === "Trailer" && featured.name === "Official Trailer" || featured.name === "Official HBO Max Trailer" ?
+                    <div className="gallery">
+                        <iframe
+                        src={ `https://www.youtube.com/embed/${featured.key}?autoplay=1&mute=1&showinfo=0&controls=1&loop=1&playlist=${featured.key}` }
+                        className="video"
+                        frameBorder="0"
+                        allow="autoplay; encrypted-media"
+                        title="video"
+                        />
+                    </div>
+                    : null 
+            ))
+            }
             <div className="movie-section1">
                 <div className="category">
                     <h1>Popular Movies</h1>
