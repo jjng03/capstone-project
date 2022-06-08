@@ -96,7 +96,7 @@ function Movies() {
                     featured.type === "Trailer" && featured.name === "Official Trailer" || featured.name === "Official HBO Max Trailer" ?
                     <div className="gallery">
                         <iframe
-                        src={ `https://www.youtube.com/embed/${featured.key}?autoplay=1&mute=1&showinfo=0&controls=1&loop=1&playlist=${featured.key}` }
+                        src={ `https://www.youtube.com/embed/${featured.key}?autoplay=1&mute=1&showinfo=0&controls=0&loop=1&playlist=${featured.key}` }
                         className="video"
                         frameBorder="0"
                         allow="autoplay; encrypted-media"

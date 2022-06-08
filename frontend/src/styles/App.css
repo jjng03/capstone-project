@@ -11,7 +11,7 @@
 .movie-section2,
 .movie-section3 {
   border: 1px solid black;
-  height: 400px;
+  height: 450px;
   display: flex;
   flex-direction: column;
   overflow-y: hidden;
@@ -25,10 +25,14 @@
   flex-direction: row;
 }
 
+.poster {
+  width: 250px;
+  height: 350px;
+}
 .card-image {
   /* border: 5px solid black; */
-  height: 300px;
-  display: flex;
+  /* height: 300px; */
+  /* display: flex; */
 }
 
 .video {
