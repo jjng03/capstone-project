@@ -8,7 +8,7 @@ function Movies() {
     const [upcomingMovies, setUpcomingMovies] = useState([]);
     const [topRatedMovies, setTopRatedMovies] = useState([]);
     const [randomMovie, setRandomMovie] = useState([]);
-    const [featuredMovie, setFeaturedMovie] = useState([]);
+    const [featuredMovie, setFeaturedMovie] = useState(null);
     const [openModal, setOpenModal] = useState(false);
 
     //===== API KEY ===== \\
@@ -90,15 +90,17 @@ function Movies() {
     // console.log(popularMovies)
     return (
         <>  
+            { featuredMovie ?
             <div className="gallery">
                 <iframe
-                // src={featuredMovie ? `https://www.youtube.com/embed/${featuredMovie[0].key}?autoplay=1&mute=1&showinfo=0&controls=1` : null}
+                src={`https://www.youtube.com/embed/${featuredMovie[0].key}?autoplay=1&mute=1&showinfo=0&controls=1`}
                 className="video"
                 frameBorder="0"
                 allow="autoplay; encrypted-media"
                 title="video"
                 />
             </div>
+            : <div>loading...</div>}
             <div className="movie-section1">
                 <div className="category">
                     <h1>Popular Movies</h1>
