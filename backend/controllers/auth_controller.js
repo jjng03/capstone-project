@@ -1,5 +1,6 @@
 const express = require('express');
 const CryptoJS = require('crypto-js');
+const jwt = require('jsonwebtoken');
 
 const router = express.Router();
 const User = require('../models/User');
@@ -9,6 +10,7 @@ router.post('/register', async (req, res) => {
     const newUser = new User({
         username: req.body.username,
         email: req.body.email,
+        // encrypting req.body.password into a secret key
         password: CryptoJS.AES.encrypt(req.body.password, process.env.SECRET_KEY).toString(),
     });
     
@@ -25,14 +27,20 @@ router.post('/login', async (req, res) => {
     try {
         const user = await User.findOne({ email: req.body.email });
         !user && res.status(404).json("Wrong password or username!")
-
+        
         const bytes = CryptoJS.AES.decrypt(user.password, process.env.SECRET_KEY);
         const originalPassword = bytes.toString(CryptoJS.enc.Utf8);
-
+        // comparing the hashed user password and the secret key
         originalPassword !== req.body.password && 
             res.status(404).json("Wrong password or username!");
-
-            res.status(200).json(user);
+            // creating a new token for the user
+            const accessToken = jwt.sign({ id: user._id }, 
+                process.env.SECRET_KEY,
+                { expiresIn: "5d" });
+        // Holds the password and only sends other information from user documents
+        const { password, ...info } = user._doc;
+        // if password and secret key are equal then send user info
+        res.status(200).json({ ...info, accessToken });
     }catch(err){
         res.status(500).json(err)
     }
