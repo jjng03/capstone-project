@@ -5,6 +5,7 @@ const express = require("express");
 const cors = require("cors");
 const jwt = require('jsonwebtoken');
 const mongoose = require('mongoose');
+const auth = require('./controllers/auth_controller');
 
 require('./config/db.connection')
 
@@ -19,6 +20,7 @@ app.use(cors());
 app.use(express.json())
 
 
+app.use('/', auth)
 
 
 // turn on the server listener
