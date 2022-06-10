@@ -2,7 +2,7 @@ import './styles/App.css';
 import React, {useState, useEffect} from 'react';
 import { Route, Routes } from 'react-router-dom';
 import Home from "./components/Home.js";
-import Nav from './components/Nav.js';
+// import Nav from './components/Nav.js';
 import Login from './pages/Login.js'
 
 function App() {
@@ -16,7 +16,7 @@ function App() {
     );
   return (
     <div className="App">
-      <Nav formData={formData} setFormData={setFormData}/>
+      {/* <Nav formData={formData} setFormData={setFormData}/> */}
       <Routes>
         <Route exact path='/' element={<Home />} />
         <Route path='/login' element={<Login formData={formData} setFormData={setFormData} URL={URL}/>} />

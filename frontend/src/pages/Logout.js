@@ -10,7 +10,7 @@ function Logout() {
     return (
         <>
             { window.localStorage.getItem("username") ? 
-                <button onClick={handleClick}>Logout</button>
+                <button onClick={handleClick}>Sign out</button>
                     
                 : <div className="login-link">
                 {window.localStorage.getItem("username")}

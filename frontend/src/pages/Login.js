@@ -34,12 +34,10 @@ function Login({formData, setFormData}) {
     return (
         <div className="login-container">
             <div className="login-box">
-                <form>
-                    <label>Username</label>
-                        <input type="text" value={formData.username} onChange={handleChange} name="username"/>
-                    <label>Password</label>
-                        <input type="password" value={formData.password} onChange={handleChange} name="password"/>
-                    <button onClick={handleLogin}>Submit</button>
+                <form className="login-form">
+                        <input type="text" value={formData.username} onChange={handleChange} name="username" placeholder="username" className="login-input"/>
+                        <input type="password" value={formData.password} onChange={handleChange} name="password" placeholder="password" className="login-input"/>
+                        <button onClick={handleLogin} className="login-btn">Sign in</button>
                 </form>
             </div>
         </div>

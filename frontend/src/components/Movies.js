@@ -1,5 +1,6 @@
 import React, {useState, useEffect} from 'react';
 import Modal from './Modal.js';
+import Nav from './Nav.js';
 
 function Movies() {
     //===== USE STATE FUNCTIONS ===== \\
@@ -91,6 +92,7 @@ function Movies() {
     
     return (
         <>  
+            <Nav />
             { 
                 featuredMovie && featuredMovie.map((featured) => (
                     featured.type === "Trailer" && featured.name === "Official Trailer" || featured.name === "Official HBO Max Trailer" ?
