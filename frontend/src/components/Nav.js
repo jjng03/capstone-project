@@ -1,5 +1,7 @@
 import { Link } from 'react-router-dom';
 import React from 'react';
+import Logout from '../pages/Logout';
+
 
 function Nav({formData}) {
     return (
@@ -8,9 +10,14 @@ function Nav({formData}) {
                 <div className="home-link">Jetflix</div>
             </Link>
             <Link to='/login'>
-                {/* { {formData} ? <div className="login-link">{formData.username}</div> : <div className="login-link">Login</div>} */}
-                <div className="login-link">Login</div>
+                { window.localStorage.getItem("username") ? 
+                    <div className="login-link">
+                        {window.localStorage.getItem("username")}
+                    </div> 
+                : <div className="login-link">Login</div>}
+                
             </Link>
+            <Logout />
         </div>
         
     )

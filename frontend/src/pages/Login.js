@@ -20,8 +20,11 @@ function Login({formData, setFormData}) {
         e.preventDefault()
         axios.post('http://localhost:4000/login', formData)
         .then(function (response) {
+            window.localStorage.setItem("token",response.data.accessToken)
+            window.localStorage.setItem("username",response.data.username)
             console.log(response);
             navigate('/')
+            window.location.reload()
         })
         .catch(function (error) {
             console.log(error);
