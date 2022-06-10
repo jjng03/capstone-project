@@ -84,7 +84,7 @@ function Movies() {
         const findCurrentMovie = popularMovies.find((popularMovie)=>popularMovie.original_title === e.target.alt);
         setCurrentMovie(findCurrentMovie)
     }
-    console.log(featuredMovie)
+    // console.log(featuredMovie)
     // console.log(randomMovie.key)
     // const imageUrl = `https://image.tmdb.org/t/p/w500/${popularMovies.poster_path}`
     // console.log(popularMovies)
