@@ -3,7 +3,6 @@ import React from 'react';
 function PopularModal( {closeModal, currentPopularMovie, popularTrailer, randomMovie}) {
     return (
         <>
-            {/* {(currentMovie.original_title) ? */}
             <div className="modal-background">
                 <div className="closeBtn">
                     <button onClick={() => closeModal(false)}> X </button>
@@ -16,7 +15,7 @@ function PopularModal( {closeModal, currentPopularMovie, popularTrailer, randomM
                     popular.type === "Trailer" && popular.name === "Official Trailer" || popular.name === "Official HBO Max Trailer" ?
                         <div className="gallery">
                             <iframe
-                            src={`https://www.youtube.com/embed/${popular.key}?autoplay=1&mute=1&showinfo=0&controls=0`}
+                            src={`https://www.youtube.com/embed/${popular.key}?autoplay=0&mute=0&showinfo=0&controls=1`}
                             className="video"
                             frameBorder="0"
                             allow="autoplay; encrypted-media"
@@ -27,7 +26,6 @@ function PopularModal( {closeModal, currentPopularMovie, popularTrailer, randomM
             ))
             }
             </div>
-            {/* : closeModal(false)} */}
         </>
     )
 }

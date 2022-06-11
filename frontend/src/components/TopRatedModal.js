@@ -3,7 +3,6 @@ import React from 'react';
 function TopRatedModal( {closeModal, currentTopRatedMovie, topRatedTrailer}) {
     return (
         <>
-            {/* {(currentMovie.original_title) ? */}
             <div className="modal-background">
                 <div className="closeBtn">
                     <button onClick={() => closeModal(false)}> X </button>
@@ -13,21 +12,20 @@ function TopRatedModal( {closeModal, currentTopRatedMovie, topRatedTrailer}) {
                 </div>
                 { 
                 topRatedTrailer && topRatedTrailer.map((topRated) => (
-                    topRated.type === "Trailer"  ?
+                    topRated.type === "Trailer" && topRated.name === "Official Trailer" || topRated.name === "Official HBO Max Trailer" ?
                         <div className="gallery">
                             <iframe
-                            src={`https://www.youtube.com/embed/${topRated.key}?autoplay=0&mute=1&showinfo=0&controls=0`}
+                            src={`https://www.youtube.com/embed/${topRated.key}?autoplay=0&mute=0&showinfo=0&controls=1`}
                             className="video"
                             frameBorder="0"
                             allow="autoplay; encrypted-media"
                             title="video"
                             />
                         </div>
-                : null 
+                : null
             ))
             }
             </div>
-            {/* : closeModal(false)} */}
         </>
     )
 }
