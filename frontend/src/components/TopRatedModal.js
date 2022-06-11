@@ -1,6 +1,6 @@
 import React from 'react';
 
-function TopRatedModal( {closeModal, currentTopRatedMovie, randomMovie}) {
+function TopRatedModal( {closeModal, currentTopRatedMovie, topRatedTrailer}) {
     return (
         <>
             {/* {(currentMovie.original_title) ? */}
@@ -11,15 +11,21 @@ function TopRatedModal( {closeModal, currentTopRatedMovie, randomMovie}) {
                 <div className="modal-box">
                     <h1>{currentTopRatedMovie.original_title}</h1>
                 </div>
-                <div className="trailer">
-                    <iframe
-                    src={`https://www.youtube.com/embed/${randomMovie.key}?autoplay=0&mute=0&showinfo=0&controls=1`}
-                    className="modal-video"
-                    frameBorder="0"
-                    allow="autoplay; encrypted-media"
-                    title="video"
-                    />
-                </div>
+                { 
+                topRatedTrailer && topRatedTrailer.map((topRated) => (
+                    topRated.type === "Trailer"  ?
+                        <div className="gallery">
+                            <iframe
+                            src={`https://www.youtube.com/embed/${topRated.key}?autoplay=0&mute=1&showinfo=0&controls=0`}
+                            className="video"
+                            frameBorder="0"
+                            allow="autoplay; encrypted-media"
+                            title="video"
+                            />
+                        </div>
+                : null 
+            ))
+            }
             </div>
             {/* : closeModal(false)} */}
         </>

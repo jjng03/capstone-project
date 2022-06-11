@@ -22,6 +22,8 @@ function Movies() {
     const [openTopRatedModal, setTopRatedOpenModal] = useState(false);
 
     const [popularTrailer, setPopularTrailer] = useState([]);
+    const [upcomingTrailer, setUpcomingTrailer] = useState([]);
+    const [topRatedTrailer, setTopRatedTrailer] = useState([]);
 
     //===== API KEY ===== \\
     const apiKey = "4464b123b33f0570ee7200292fffe1a2"
@@ -110,13 +112,24 @@ function Movies() {
         getPopularTrailer();
     }, [currentPopularMovie])
 
-    console.log(popularTrailer)
+    // console.log(popularTrailer)
     const handleCurrentUpcomingMovie = (e)=>{
         // console.log(e.target.alt)
         const findCurrentUpcomingMovie = upcomingMovies.find((upcomingMovie)=>upcomingMovie.original_title === e.target.alt);
         
         setCurrentUpcomingMovie(findCurrentUpcomingMovie)
     }
+
+    useEffect(()=>{
+        async function getUpcomingTrailer() {
+            const url = `https://api.themoviedb.org/3/movie/${currentUpcomingMovie.id}/videos?api_key=${apiKey}&language=en-US`
+            const response = await fetch(url)
+            const data = await response.json()
+            setUpcomingTrailer(data.results)
+        }
+        getUpcomingTrailer();
+    }, [currentUpcomingMovie])
+
 
     const handleCurrentTopRatedMovie = (e)=>{
         // console.log(e.target.alt)
@@ -125,6 +138,16 @@ function Movies() {
         setCurrentTopRatedMovie(findCurrentTopRatedMovie)
     }
     
+    useEffect(()=>{
+        async function getTopRatedTrailer() {
+            const url = `https://api.themoviedb.org/3/movie/${currentTopRatedMovie.id}/videos?api_key=${apiKey}&language=en-US`
+            const response = await fetch(url)
+            const data = await response.json()
+            setTopRatedTrailer(data.results)
+        }
+        getTopRatedTrailer();
+    }, [currentTopRatedMovie])
+
     return (
         <>  
             <Nav />
@@ -163,7 +186,7 @@ function Movies() {
                     }
                 </div>
                 <div className="modal">
-                    {openPopularModal && <PopularModal closeModal={setPopularOpenModal} popularTrailer={popularTrailer} currentPopularMovie={currentPopularMovie} randomMovie={randomMovie}/>}
+                    {openPopularModal && <PopularModal closeModal={setPopularOpenModal} popularTrailer={popularTrailer} currentPopularMovie={currentPopularMovie} />}
                 </div>
             </div>
             <div className="movie-section2">
@@ -186,7 +209,7 @@ function Movies() {
                     }
                 </div>
                 <div className="modal">
-                    {openUpcomingModal && <UpcomingModal closeModal={setUpcomingOpenModal} currentUpcomingMovie={currentUpcomingMovie} randomMovie={randomMovie}/>}
+                    {openUpcomingModal && <UpcomingModal closeModal={setUpcomingOpenModal} upcomingTrailer={upcomingTrailer} currentUpcomingMovie={currentUpcomingMovie} />}
                 </div>
             </div>
             <div className="movie-section3">
@@ -209,7 +232,7 @@ function Movies() {
                     }
                 </div>
                 <div className="modal">
-                    {openTopRatedModal && <TopRatedModal closeModal={setTopRatedOpenModal} currentTopRatedMovie={currentTopRatedMovie} randomMovie={randomMovie}/>}
+                    {openTopRatedModal && <TopRatedModal closeModal={setTopRatedOpenModal} topRatedTrailer={topRatedTrailer} currentTopRatedMovie={currentTopRatedMovie} />}
                 </div>
             </div>
             

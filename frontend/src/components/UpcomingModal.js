@@ -1,6 +1,6 @@
 import React from 'react';
 
-function UpcomingModal( {closeModal, currentUpcomingMovie, randomMovie}) {
+function UpcomingModal( {closeModal, currentUpcomingMovie, upcomingTrailer, randomMovie}) {
     return (
         <>
             {/* {(currentMovie.original_title) ? */}
@@ -11,15 +11,21 @@ function UpcomingModal( {closeModal, currentUpcomingMovie, randomMovie}) {
                 <div className="modal-box">
                     <h1>{currentUpcomingMovie.original_title}</h1>
                 </div>
-                <div className="trailer">
-                    <iframe
-                    src={`https://www.youtube.com/embed/${randomMovie.key}?autoplay=0&mute=0&showinfo=0&controls=1`}
-                    className="modal-video"
-                    frameBorder="0"
-                    allow="autoplay; encrypted-media"
-                    title="video"
-                    />
-                </div>
+                { 
+                upcomingTrailer && upcomingTrailer.map((upcoming) => (
+                    upcoming.type === "Trailer" && upcoming.name === "Official Trailer" || upcoming.name === "Official HBO Max Trailer" ?
+                        <div className="gallery">
+                            <iframe
+                            src={`https://www.youtube.com/embed/${upcoming.key}?autoplay=1&mute=1&showinfo=0&controls=0`}
+                            className="video"
+                            frameBorder="0"
+                            allow="autoplay; encrypted-media"
+                            title="video"
+                            />
+                        </div>
+                : null
+            ))
+            }
             </div>
             {/* : closeModal(false)} */}
         </>
