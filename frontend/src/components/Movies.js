@@ -21,6 +21,8 @@ function Movies() {
     const [openPopularModal, setPopularOpenModal] = useState(false);
     const [openTopRatedModal, setTopRatedOpenModal] = useState(false);
 
+    const [popularTrailer, setPopularTrailer] = useState([]);
+
     //===== API KEY ===== \\
     const apiKey = "4464b123b33f0570ee7200292fffe1a2"
 
@@ -89,32 +91,39 @@ function Movies() {
         getFeaturedMovie();
     }, [randomMovie])
 
+
+
     const handleCurrentPopularMovie = (e)=>{
-        console.log(e.target.alt)
+        // console.log(e.target.alt)
         const findCurrentPopularMovie = popularMovies.find((popularMovie)=>popularMovie.original_title === e.target.alt);
     
         setCurrentPopularMovie(findCurrentPopularMovie)
     }
 
+    useEffect(()=>{
+        async function getPopularTrailer() {
+            const url = `https://api.themoviedb.org/3/movie/${currentPopularMovie.id}/videos?api_key=${apiKey}&language=en-US`
+            const response = await fetch(url)
+            const data = await response.json()
+            setPopularTrailer(data.results)
+        }
+        getPopularTrailer();
+    }, [currentPopularMovie])
+
+    console.log(popularTrailer)
     const handleCurrentUpcomingMovie = (e)=>{
-        console.log(e.target.alt)
+        // console.log(e.target.alt)
         const findCurrentUpcomingMovie = upcomingMovies.find((upcomingMovie)=>upcomingMovie.original_title === e.target.alt);
         
         setCurrentUpcomingMovie(findCurrentUpcomingMovie)
     }
 
     const handleCurrentTopRatedMovie = (e)=>{
-        console.log(e.target.alt)
+        // console.log(e.target.alt)
         const findCurrentTopRatedMovie = topRatedMovies.find((topRatedMovie)=>topRatedMovie.original_title === e.target.alt);
         
         setCurrentTopRatedMovie(findCurrentTopRatedMovie)
     }
-    // console.log(currentUpcomingMovie)
-    // console.log(currentPopularMovie)
-    // console.log(featuredMovie)
-    // console.log(randomMovie.key)
-    // const imageUrl = `https://image.tmdb.org/t/p/w500/${popularMovies.poster_path}`
-    // console.log(popularMovies)
     
     return (
         <>  
@@ -154,7 +163,7 @@ function Movies() {
                     }
                 </div>
                 <div className="modal">
-                    {openPopularModal && <PopularModal closeModal={setPopularOpenModal} currentPopularMovie={currentPopularMovie} randomMovie={randomMovie}/>}
+                    {openPopularModal && <PopularModal closeModal={setPopularOpenModal} popularTrailer={popularTrailer} currentPopularMovie={currentPopularMovie} randomMovie={randomMovie}/>}
                 </div>
             </div>
             <div className="movie-section2">
