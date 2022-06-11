@@ -103,7 +103,9 @@
 
 .home {
   /* border: 1px solid white; */
+  /* height: 50px; */
   width: 45vw;
+  /* background-image: url('jetflixlogocropped.jpg'); */
 }
 
 .signin {
@@ -112,10 +114,16 @@
   display: flex;
   justify-content: flex-end;
 }
+
 .home-link {
   font-size: 30px;
   color: white;
   text-decoration: none;
+}
+
+.jetflix {
+  width: 15%;
+  /* border: 1px solid white; */
 }
 
 .login-container {
@@ -179,6 +187,8 @@
   padding: 15px;
   cursor: pointer;
 }
+
+
 /* @media only screen and (max-width: 1000px) {
   .poster {
     height: 250px;

@@ -1,16 +1,25 @@
 import React, {useState, useEffect} from 'react';
-import Modal from './Modal.js';
+import PopularModal from './PopularModal.js';
+import UpcomingModal from './UpcomingModal.js';
+import TopRatedModal from './TopRatedModal.js';
 import Nav from './Nav.js';
 
 function Movies() {
     //===== USE STATE FUNCTIONS ===== \\
-    const [currentMovie, setCurrentMovie] = useState([]);
+    const [currentPopularMovie, setCurrentPopularMovie] = useState([]);
+    const [currentUpcomingMovie, setCurrentUpcomingMovie] = useState([]);
+    const [currentTopRatedMovie, setCurrentTopRatedMovie] = useState([]);
+
     const [popularMovies, setPopularMovies] = useState([]);
     const [upcomingMovies, setUpcomingMovies] = useState([]);
     const [topRatedMovies, setTopRatedMovies] = useState([]);
+
     const [randomMovie, setRandomMovie] = useState([]);
     const [featuredMovie, setFeaturedMovie] = useState(null);
-    const [openModal, setOpenModal] = useState(false);
+
+    const [openUpcomingModal, setUpcomingOpenModal] = useState(false);
+    const [openPopularModal, setPopularOpenModal] = useState(false);
+    const [openTopRatedModal, setTopRatedOpenModal] = useState(false);
 
     //===== API KEY ===== \\
     const apiKey = "4464b123b33f0570ee7200292fffe1a2"
@@ -80,11 +89,28 @@ function Movies() {
         getFeaturedMovie();
     }, [randomMovie])
 
-    const handleCurrentMovie = (e)=>{
+    const handleCurrentPopularMovie = (e)=>{
         console.log(e.target.alt)
-        const findCurrentMovie = popularMovies.find((popularMovie)=>popularMovie.original_title === e.target.alt);
-        setCurrentMovie(findCurrentMovie)
+        const findCurrentPopularMovie = popularMovies.find((popularMovie)=>popularMovie.original_title === e.target.alt);
+    
+        setCurrentPopularMovie(findCurrentPopularMovie)
     }
+
+    const handleCurrentUpcomingMovie = (e)=>{
+        console.log(e.target.alt)
+        const findCurrentUpcomingMovie = upcomingMovies.find((upcomingMovie)=>upcomingMovie.original_title === e.target.alt);
+        
+        setCurrentUpcomingMovie(findCurrentUpcomingMovie)
+    }
+
+    const handleCurrentTopRatedMovie = (e)=>{
+        console.log(e.target.alt)
+        const findCurrentTopRatedMovie = topRatedMovies.find((topRatedMovie)=>topRatedMovie.original_title === e.target.alt);
+        
+        setCurrentTopRatedMovie(findCurrentTopRatedMovie)
+    }
+    // console.log(currentUpcomingMovie)
+    // console.log(currentPopularMovie)
     // console.log(featuredMovie)
     // console.log(randomMovie.key)
     // const imageUrl = `https://image.tmdb.org/t/p/w500/${popularMovies.poster_path}`
@@ -115,19 +141,21 @@ function Movies() {
                 <div className="cards">
                     {
                         popularMovies.map((popularMovie) => (
-                            <button className="card-btn" onClick={()=> {setOpenModal(true)}}>
+                            <button className="card-btn" onClick={()=> {setPopularOpenModal(true)}}>
                                 <div className="card-image">
                                     <img 
                                     src={ `https://image.tmdb.org/t/p/w500${popularMovie.poster_path}` } 
                                     className="poster" 
                                     alt={popularMovie.original_title} 
-                                    onClick={handleCurrentMovie}/>
+                                    onClick={handleCurrentPopularMovie} />
                                 </div>
                             </button>
                         ))
                     }
                 </div>
-                
+                <div className="modal">
+                    {openPopularModal && <PopularModal closeModal={setPopularOpenModal} currentPopularMovie={currentPopularMovie} randomMovie={randomMovie}/>}
+                </div>
             </div>
             <div className="movie-section2">
                 <div className="category">
@@ -136,13 +164,20 @@ function Movies() {
                 <div className="cards">
                     {
                         upcomingMovies.map((upcomingMovie) => (
-                            <button className="card-btn" onClick={()=> {setOpenModal(true)}}>
+                            <button className="card-btn" onClick={()=> {setUpcomingOpenModal(true)}}>
                                 <div className="card-image">
-                                    <img src={ `https://image.tmdb.org/t/p/w500${upcomingMovie.poster_path}` } className="poster" alt={upcomingMovie.original_title}/>
+                                    <img 
+                                    src={ `https://image.tmdb.org/t/p/w500${upcomingMovie.poster_path}` } 
+                                    className="poster" 
+                                    alt={upcomingMovie.original_title}
+                                    onClick={handleCurrentUpcomingMovie}/>
                                 </div>
                             </button>
                         ))
                     }
+                </div>
+                <div className="modal">
+                    {openUpcomingModal && <UpcomingModal closeModal={setUpcomingOpenModal} currentUpcomingMovie={currentUpcomingMovie} randomMovie={randomMovie}/>}
                 </div>
             </div>
             <div className="movie-section3">
@@ -152,18 +187,23 @@ function Movies() {
                 <div className="cards">
                     {
                         topRatedMovies.map((topRatedMovie) => (
-                            <button className="card-btn" onClick={()=> {setOpenModal(true)}}>
+                            <button className="card-btn" onClick={()=> {setTopRatedOpenModal(true)}}>
                                 <div className="card-image">
-                                    <img src={ `https://image.tmdb.org/t/p/w500${topRatedMovie.poster_path}` } className="poster" alt={topRatedMovie.original_title}/>
+                                    <img 
+                                    src={ `https://image.tmdb.org/t/p/w500${topRatedMovie.poster_path}` } 
+                                    className="poster" 
+                                    alt={topRatedMovie.original_title}
+                                    onClick={handleCurrentTopRatedMovie}/>
                                 </div>
                             </button>
                         ))
                     }
                 </div>
+                <div className="modal">
+                    {openTopRatedModal && <TopRatedModal closeModal={setTopRatedOpenModal} currentTopRatedMovie={currentTopRatedMovie} randomMovie={randomMovie}/>}
+                </div>
             </div>
-            <div className="modal">
-                {openModal && <Modal closeModal={setOpenModal} currentMovie={currentMovie} randomMovie={randomMovie}/>}
-            </div>
+            
         </>
     )
 }

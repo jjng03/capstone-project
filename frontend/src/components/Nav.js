@@ -8,7 +8,9 @@ function Nav() {
         <div className="nav-container">
             <Link to='/'>
                 <div className="home">
-                    <div className="home-link">Jetflix</div>
+                    <div className="home-link">
+                        <img src="https://i.imgur.com/eAhPPci.jpg" alt="jetflix" className="jetflix"/>
+                    </div>
                 </div>
             </Link>
             <Link to='/login'>

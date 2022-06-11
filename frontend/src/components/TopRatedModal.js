@@ -1,6 +1,6 @@
 import React from 'react';
 
-function Modal( {closeModal, currentMovie, randomMovie}) {
+function TopRatedModal( {closeModal, currentTopRatedMovie, randomMovie}) {
     return (
         <>
             {/* {(currentMovie.original_title) ? */}
@@ -9,7 +9,7 @@ function Modal( {closeModal, currentMovie, randomMovie}) {
                     <button onClick={() => closeModal(false)}> X </button>
                 </div>
                 <div className="modal-box">
-                    <h1>{currentMovie.original_title}</h1>
+                    <h1>{currentTopRatedMovie.original_title}</h1>
                 </div>
                 <div className="trailer">
                     <iframe
@@ -26,4 +26,4 @@ function Modal( {closeModal, currentMovie, randomMovie}) {
     )
 }
 
-export default Modal;
+export default TopRatedModal;
