@@ -25,6 +25,9 @@ function Movies() {
     const [upcomingTrailer, setUpcomingTrailer] = useState([]);
     const [topRatedTrailer, setTopRatedTrailer] = useState([]);
 
+    const [casts, setCasts] = useState([]);
+    const [crews, setCrews] = useState([]);
+    
     //===== API KEY ===== \\
     const apiKey = "4464b123b33f0570ee7200292fffe1a2"
 
@@ -148,6 +151,29 @@ function Movies() {
         getTopRatedTrailer();
     }, [currentTopRatedMovie])
 
+
+    useEffect(()=>{
+        async function getCasts() {
+            const url = `https://api.themoviedb.org/3/movie/${currentPopularMovie.id}/credits?api_key=${apiKey}&language=en-US`
+            const response = await fetch(url)
+            const data = await response.json()
+            setCasts(data.cast)
+        }
+        getCasts();
+    }, [currentPopularMovie])
+
+    useEffect(()=>{
+        async function getCrews() {
+            const url = `https://api.themoviedb.org/3/movie/${currentPopularMovie.id}/credits?api_key=${apiKey}&language=en-US`
+            const response = await fetch(url)
+            const data = await response.json()
+            setCrews(data.crew)
+        }
+        getCrews();
+    }, [currentPopularMovie])
+
+
+    console.log(casts)
     return (
         <>  
             <Nav />
@@ -186,7 +212,7 @@ function Movies() {
                     }
                 </div>
                 <div className="modal">
-                    {openPopularModal && <PopularModal closeModal={setPopularOpenModal} popularTrailer={popularTrailer} currentPopularMovie={currentPopularMovie} />}
+                    {openPopularModal && <PopularModal closeModal={setPopularOpenModal} crews={crews} casts={casts} popularTrailer={popularTrailer} currentPopularMovie={currentPopularMovie} />}
                 </div>
             </div>
             <div className="movie-section2">
