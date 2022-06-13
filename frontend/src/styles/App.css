@@ -166,10 +166,6 @@
   color: white;
 }
 
-.home {
-  width: 45vw;
-}
-
 .signin {
   /* border: 1px solid white; */
   width: 45vw;
@@ -183,14 +179,24 @@
   margin-left: 10px;
 }
 
+.home {
+  width: 45vw;
+  display: flex;
+}
+
 .home-link {
-  font-size: 30px;
+  /* font-size: 30px; */
   color: white;
   text-decoration: none;
+  /* border: 1px solid white; */
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .jetflix {
-  width: 15%;
+  width: 150px;
+  height: 100%;
   /* border: 1px solid white; */
 }
 

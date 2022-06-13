@@ -6,13 +6,13 @@ import Logout from '../pages/Logout';
 function Nav() {
     return (
         <div className="nav-container">
-            <Link to='/'>
                 <div className="home">
                     <div className="home-link">
-                        <img src="https://i.imgur.com/eAhPPci.jpg" alt="jetflix" className="jetflix"/>
+                        <Link to='/'>
+                            <img src="https://i.imgur.com/eAhPPci.jpg" alt="jetflix" className="jetflix"/>
+                        </Link>
                     </div>
                 </div>
-            </Link>
         
             { window.localStorage.getItem("username") ? 
                 <div className="signin">
