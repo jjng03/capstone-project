@@ -13,16 +13,17 @@ function Nav() {
                     </div>
                 </div>
             </Link>
-            <Link to='/login'>
-                { window.localStorage.getItem("username") ? 
-                    <div className="signin">
-                        <div className="signin-link">{window.localStorage.getItem("username")}</div> 
-                    </div>
-                : <div className="signin">
+        
+            { window.localStorage.getItem("username") ? 
+                <div className="signin">
+                    <div className="signin-link">{window.localStorage.getItem("username")}</div> 
+                </div>
+            : <Link to='/login'>
+                <div className="signin">
                     <div className="signin-link">Sign in</div> 
-                </div>}
-                
-            </Link>
+                </div> 
+                </Link>}
+            
             <Logout />
         </div>
         

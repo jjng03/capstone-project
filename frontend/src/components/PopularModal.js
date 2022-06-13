@@ -16,6 +16,7 @@ function PopularModal( {closeModal, currentPopularMovie, popularTrailer, popular
                         popular.type === "Trailer" && popular.name === "Official Trailer" || popular.name === "Official HBO Max Trailer" ?
                             <div className="gallery">
                                 <iframe
+                                // key={popular.id}
                                 src={`https://www.youtube.com/embed/${popular.key}?autoplay=0&mute=0&showinfo=0&controls=1`}
                                 className="video"
                                 frameBorder="0"

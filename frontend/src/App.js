@@ -1,5 +1,5 @@
 import './styles/App.css';
-import React, {useState, useEffect} from 'react';
+import React, {useState} from 'react';
 import { Route, Routes } from 'react-router-dom';
 import Home from "./components/Home.js";
 // import Nav from './components/Nav.js';

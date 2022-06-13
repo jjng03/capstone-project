@@ -2,6 +2,7 @@ import React, {useState, useEffect} from 'react';
 import PopularModal from './PopularModal.js';
 import UpcomingModal from './UpcomingModal.js';
 import TopRatedModal from './TopRatedModal.js';
+import { MdChevronLeft, MdChevronRight } from 'react-icons/md';
 import Nav from './Nav.js';
 
 function Movies() {
@@ -33,6 +34,20 @@ function Movies() {
     const [upcomingCasts, setUpcomingCasts] = useState([]);
     const [upcomingCrews, setUpcomingCrews] = useState([]);
 
+    //===================================================\\
+    //===== HORIZONTAL SCROLL FUNCTION ===== \\
+    //===================================================\\
+    function slideLeft() {
+        const cards = document.querySelector(".cards");
+        cards.scrollLeft = cards.scrollLeft - 1000;
+    }
+
+    function slideRight() {
+        const cards = document.querySelector(".cards");
+        cards.scrollLeft = cards.scrollLeft + 1000;
+    }
+
+    
     //===================================================\\
     //===== API KEY ===== \\
     //===================================================\\
@@ -229,74 +244,86 @@ function Movies() {
                     : null 
             ))
             }
+            <div className="category">
+                <h1>Popular Movies</h1>
+            </div>
             <div className="movie-section1">
-                <div className="category">
+                {/* <div className="category">
                     <h1>Popular Movies</h1>
-                </div>
-                <div className="cards">
-                    {
-                        popularMovies.map((popularMovie) => (
-                            <button className="card-btn" onClick={()=> {setPopularOpenModal(true)}}>
-                                <div className="card-image">
-                                    <img 
-                                    src={ `https://image.tmdb.org/t/p/w500${popularMovie.poster_path}` } 
-                                    className="poster" 
-                                    alt={popularMovie.original_title} 
-                                    onClick={handleCurrentPopularMovie} />
-                                </div>
-                            </button>
-                        ))
-                    }
-                </div>
-                <div className="modal">
-                    {openPopularModal && <PopularModal closeModal={setPopularOpenModal} popularCrews={popularCrews} popularCasts={popularCasts} popularTrailer={popularTrailer} currentPopularMovie={currentPopularMovie} />}
-                </div>
+                </div> */}
+            
+                <MdChevronLeft size={40} className="slider-icon left" onClick={slideLeft}/>
+                    <div className="cards">
+                        
+                        {
+                            popularMovies.map((popularMovie) => (
+                                <button className="card-btn" onClick={()=> {setPopularOpenModal(true)}}>
+                                    <div className="card-image">
+                                        <img 
+                                        // key={popularMovie.id}
+                                        src={ `https://image.tmdb.org/t/p/w500${popularMovie.poster_path}` } 
+                                        className="poster" 
+                                        alt={popularMovie.original_title} 
+                                        onClick={handleCurrentPopularMovie} />
+                                    </div>
+                                </button>
+                            ))
+                        }
+                        
+                    </div>
+                <MdChevronRight size={40} className="slider-icon right" onClick={slideRight}/>
+                
+                    <div className="modal">
+                        {openPopularModal && <PopularModal closeModal={setPopularOpenModal} popularCrews={popularCrews} popularCasts={popularCasts} popularTrailer={popularTrailer} currentPopularMovie={currentPopularMovie} />}
+                    </div>
+            </div>
+            <div className="category">
+                <h1>Upcoming Movies</h1>
             </div>
             <div className="movie-section2">
-                <div className="category">
-                    <h1>Upcoming Movies</h1>
-                </div>
-                <div className="cards">
-                    {
-                        upcomingMovies.map((upcomingMovie) => (
-                            <button className="card-btn" onClick={()=> {setUpcomingOpenModal(true)}}>
-                                <div className="card-image">
+                <MdChevronLeft size={40} className="slider-icon left" onClick={slideLeft}/>
+                    <div className="cards">
+                        {
+                            upcomingMovies.map((upcomingMovie) => (
+                                <button className="card-btn" onClick={()=> {setUpcomingOpenModal(true)}}>
                                     <img 
+                                    // key={upcomingMovie.id}
                                     src={ `https://image.tmdb.org/t/p/w500${upcomingMovie.poster_path}` } 
                                     className="poster" 
                                     alt={upcomingMovie.original_title}
                                     onClick={handleCurrentUpcomingMovie}/>
-                                </div>
-                            </button>
-                        ))
-                    }
-                </div>
-                <div className="modal">
-                    {openUpcomingModal && <UpcomingModal closeModal={setUpcomingOpenModal} upcomingCrews={upcomingCrews} upcomingCasts={upcomingCasts} upcomingTrailer={upcomingTrailer} currentUpcomingMovie={currentUpcomingMovie} />}
-                </div>
+                                </button>
+                            ))
+                        }
+                    </div>
+                <MdChevronRight size={40} className="slider-icon right" onClick={slideRight}/>
+                    <div className="modal">
+                        {openUpcomingModal && <UpcomingModal closeModal={setUpcomingOpenModal} upcomingCrews={upcomingCrews} upcomingCasts={upcomingCasts} upcomingTrailer={upcomingTrailer} currentUpcomingMovie={currentUpcomingMovie} />}
+                    </div>
+            </div>
+            <div className="category">
+                <h1>Top Rated Movies</h1>
             </div>
             <div className="movie-section3">
-                <div className="category">
-                    <h1>Top Rated Movies</h1>
-                </div>
-                <div className="cards">
-                    {
-                        topRatedMovies.map((topRatedMovie) => (
-                            <button className="card-btn" onClick={()=> {setTopRatedOpenModal(true)}}>
-                                <div className="card-image">
-                                    <img 
-                                    src={ `https://image.tmdb.org/t/p/w500${topRatedMovie.poster_path}` } 
-                                    className="poster" 
-                                    alt={topRatedMovie.original_title}
-                                    onClick={handleCurrentTopRatedMovie}/>
-                                </div>
-                            </button>
-                        ))
-                    }
-                </div>
-                <div className="modal">
-                    {openTopRatedModal && <TopRatedModal closeModal={setTopRatedOpenModal} topRatedTrailer={topRatedTrailer} currentTopRatedMovie={currentTopRatedMovie} />}
-                </div>
+                <MdChevronLeft size={40} className="slider-icon left" onClick={slideLeft}/>
+                    <div className="cards">
+                        {
+                            topRatedMovies.map((topRatedMovie) => (
+                                <button className="card-btn" onClick={()=> {setTopRatedOpenModal(true)}}>
+                                        <img 
+                                        // key={topRatedMovie.id}
+                                        src={ `https://image.tmdb.org/t/p/w500${topRatedMovie.poster_path}` } 
+                                        className="poster" 
+                                        alt={topRatedMovie.original_title}
+                                        onClick={handleCurrentTopRatedMovie}/>
+                                </button>
+                            ))
+                        }
+                    </div>
+                <MdChevronRight size={40} className="slider-icon right" onClick={slideRight}/>
+                    <div className="modal">
+                        {openTopRatedModal && <TopRatedModal closeModal={setTopRatedOpenModal} topRatedTrailer={topRatedTrailer} currentTopRatedMovie={currentTopRatedMovie} />}
+                    </div>
             </div>
             
         </>

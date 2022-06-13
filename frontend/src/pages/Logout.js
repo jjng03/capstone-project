@@ -1,4 +1,5 @@
 import {useNavigate} from 'react-router-dom';
+import { MdMoreHoriz } from 'react-icons/md'
 
 function Logout() {
     const navigate = useNavigate();
@@ -10,7 +11,7 @@ function Logout() {
     return (
         <>
             { window.localStorage.getItem("username") ? 
-                <button onClick={handleClick}>Sign out</button>
+                <MdMoreHoriz className="sign-out" size={40} onClick={handleClick} />
                     
                 : <div className="login-link">
                 {window.localStorage.getItem("username")}
