@@ -1,4 +1,8 @@
 # capstone-(Jetflix)
+A Netflix clone application that's built on a full MERN stack
+
+# Technologies Used
+React, MongoDB, Mongoose, NodeJs, Express
 
 # Wireframe
 
@@ -17,3 +21,6 @@
 1) Drop down menu for movie genres
 2) A search function
 3) A favorite list for the users
+
+# API Reference
+https://www.themoviedb.org/settings/api
