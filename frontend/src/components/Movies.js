@@ -30,6 +30,9 @@ function Movies() {
     const [popularCasts, setPopularCasts] = useState([]);
     const [popularCrews, setPopularCrews] = useState([]);
     
+    const [upcomingCasts, setUpcomingCasts] = useState([]);
+    const [upcomingCrews, setUpcomingCrews] = useState([]);
+
     //===================================================\\
     //===== API KEY ===== \\
     //===================================================\\
@@ -188,7 +191,25 @@ function Movies() {
     //===================================================\\
     //===== UPCOMING MOVIE CASTS AND CREWS ===== \\
     //===================================================\\
+    useEffect(()=>{
+        async function getUpcomingCasts() {
+            const url = `https://api.themoviedb.org/3/movie/${currentUpcomingMovie.id}/credits?api_key=${apiKey}&language=en-US`
+            const response = await fetch(url)
+            const data = await response.json()
+            setUpcomingCasts(data.cast)
+        }
+        getUpcomingCasts();
+    }, [currentUpcomingMovie])
 
+    useEffect(()=>{
+        async function getUpcomingCrews() {
+            const url = `https://api.themoviedb.org/3/movie/${currentUpcomingMovie.id}/credits?api_key=${apiKey}&language=en-US`
+            const response = await fetch(url)
+            const data = await response.json()
+            setUpcomingCrews(data.crew)
+        }
+        getUpcomingCrews();
+    }, [currentUpcomingMovie])
     // console.log(casts)
     return (
         <>  
@@ -251,7 +272,7 @@ function Movies() {
                     }
                 </div>
                 <div className="modal">
-                    {openUpcomingModal && <UpcomingModal closeModal={setUpcomingOpenModal} upcomingTrailer={upcomingTrailer} currentUpcomingMovie={currentUpcomingMovie} />}
+                    {openUpcomingModal && <UpcomingModal closeModal={setUpcomingOpenModal} upcomingCrews={upcomingCrews} upcomingCasts={upcomingCasts} upcomingTrailer={upcomingTrailer} currentUpcomingMovie={currentUpcomingMovie} />}
                 </div>
             </div>
             <div className="movie-section3">
