@@ -5,7 +5,7 @@ const jwt = require('jsonwebtoken');
 const router = express.Router();
 const User = require('../models/User');
 
-// REGISTER ROUTE
+// CREATE USER ROUTE
 router.post('/register', async (req, res) => {
     const newUser = new User({
         username: req.body.username,
@@ -25,7 +25,7 @@ router.post('/register', async (req, res) => {
 // LOGIN ROUTE
 router.post('/login', async (req, res) => {
     try {
-        const user = await User.findOne({ email: req.body.email });
+        const user = await User.findOne({ username: req.body.username });
         !user && res.status(404).json("Wrong password or username!")
         
         const bytes = CryptoJS.AES.decrypt(user.password, process.env.SECRET_KEY);
