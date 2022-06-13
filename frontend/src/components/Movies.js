@@ -2,8 +2,11 @@ import React, {useState, useEffect} from 'react';
 import PopularModal from './PopularModal.js';
 import UpcomingModal from './UpcomingModal.js';
 import TopRatedModal from './TopRatedModal.js';
-import { MdChevronLeft, MdChevronRight } from 'react-icons/md';
+import { MdChevronLeft, MdChevronRight, MdVolumeMute } from 'react-icons/md';
 import Nav from './Nav.js';
+
+// const video = videoPlayer.querySelector('.video');
+// const videoPlayer = document.querySelector('.gallery');
 
 function Movies() {
     //===================================================\\
@@ -47,6 +50,10 @@ function Movies() {
         cards.scrollLeft = cards.scrollLeft + 1000;
     }
 
+    // function clickMute() {
+    //     const mute = videoPlayer.querySelector(".mute");
+    //     mute.
+    // }
     
     //===================================================\\
     //===== API KEY ===== \\
@@ -234,16 +241,21 @@ function Movies() {
                     featured.type === "Trailer" && featured.name === "Official Trailer" || featured.name === "Official HBO Max Trailer" ?
                     <div className="gallery">
                         <iframe
-                        src={ `https://www.youtube.com/embed/${featured.key}?autoplay=1&mute=1&showinfo=0&controls=0&loop=1&playlist=${featured.key}` }
+                        src={ `https://www.youtube.com/embed/${featured.key}?autoplay=1&mute=1&showinfo=0&controls=1&loop=1&playlist=${featured.key}` }
                         className="video"
                         frameBorder="0"
                         allow="autoplay; encrypted-media"
                         title="video"
                         />
+                        <MdVolumeMute className="mute" />
                     </div>
+                    
                     : null 
             ))
             }
+            {/* <div className="controls"> */}
+                {/* <button className="mute">Mute</button> */}
+            {/* </div> */}
             <div className="category">
                 <h1>Popular Movies</h1>
             </div>
