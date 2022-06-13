@@ -1,4 +1,4 @@
-# capstone-project
+# capstone-(Jetflix)
 
 # Wireframe
 
@@ -14,6 +14,6 @@
 3) User will be able to click on a movie and play the trailer
 
 # Stretch Goals
-1) Navigation bar for movie genres
+1) Drop down menu for movie genres
 2) A search function
-3) User will be able to add a movie to their Favorite list
+3) A favorite list for the users
