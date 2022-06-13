@@ -55,23 +55,27 @@
 } */
 
 .modal-background {
-  background-color: #1a1a1a;
+  background-color: none;
   height: 100%;
-  /* max-width: 50%; */
-  width: 30%;
-  border: 1px solid black;
+  width: 100%;
+  /* border: 1px solid black; */
   display: flex;
   flex-direction: column;
   position: fixed;
   top: 0;
-  left: 35%;
   color: white;
-  /* margin-top: 50px; */
   z-index: 11;
 }
 
+.modal-body {
+  background-color: #1a1a1a;
+  margin: auto;
+  width: 35%;
+  height: 100%;
+}
+
 .description {
-  font-size: 12px;
+  font-size: 15px;
   /* border: 1px solid white; */
   /* width: 90%; */
   padding: 5px;
@@ -80,10 +84,12 @@
 .cast,
 .director {
   padding: 5px;
-  font-size: 12px;
+  font-size: 15px;
   /* border: 1px solid white; */
+  height: 20px;
   display: flex;
   flex-direction: row;
+  align-items: center;
 }
 
 .actor-name,

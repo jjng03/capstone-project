@@ -1,9 +1,10 @@
 import React from 'react';
 
-function PopularModal( {closeModal, currentPopularMovie, popularTrailer, casts, crews}) {
+function PopularModal( {closeModal, currentPopularMovie, popularTrailer, popularCasts, popularCrews}) {
     return (
         <>
             <div className="modal-background">
+                <div className="modal-body">
                 <div className="closeBtn">
                     <button onClick={() => closeModal(false)}> X </button>
                 </div>
@@ -32,10 +33,10 @@ function PopularModal( {closeModal, currentPopularMovie, popularTrailer, casts, 
                 <div className="cast">
                     <p>Cast:</p>
                     {
-                        casts && casts.map((cast) => (
+                        popularCasts && popularCasts.map((popularCast) => (
                             // cast.order === 0 || cast.order === 1 || cast.order === 2 ?
-                            cast.known_for_department === "Acting" && cast.order === 0 || cast.order === 1 || cast.order === 2 ?
-                                <p className="actor-name">{cast.name},</p>
+                            popularCast.known_for_department === "Acting" && popularCast.order === 0 || popularCast.order === 1 || popularCast.order === 2 ?
+                                <p className="actor-name">{popularCast.name},</p>
                             : null
                     ))
                     }
@@ -44,12 +45,13 @@ function PopularModal( {closeModal, currentPopularMovie, popularTrailer, casts, 
                 <div className="director">
                     <p>Director:</p>
                     {
-                        crews && crews.map((crew) => (
-                            crew.job === "Director" ?
-                                <p className="director-name">{crew.name}</p>
+                        popularCrews && popularCrews.map((popularCrew) => (
+                            popularCrew.job === "Director" ?
+                                <p className="director-name">{popularCrew.name}</p>
                             : null
                         ))
                     }
+                </div>
                 </div>
             </div>
         </>

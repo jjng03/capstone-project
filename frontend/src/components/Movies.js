@@ -5,7 +5,9 @@ import TopRatedModal from './TopRatedModal.js';
 import Nav from './Nav.js';
 
 function Movies() {
+    //===================================================\\
     //===== USE STATE FUNCTIONS ===== \\
+    //===================================================\\
     const [currentPopularMovie, setCurrentPopularMovie] = useState([]);
     const [currentUpcomingMovie, setCurrentUpcomingMovie] = useState([]);
     const [currentTopRatedMovie, setCurrentTopRatedMovie] = useState([]);
@@ -25,13 +27,17 @@ function Movies() {
     const [upcomingTrailer, setUpcomingTrailer] = useState([]);
     const [topRatedTrailer, setTopRatedTrailer] = useState([]);
 
-    const [casts, setCasts] = useState([]);
-    const [crews, setCrews] = useState([]);
+    const [popularCasts, setPopularCasts] = useState([]);
+    const [popularCrews, setPopularCrews] = useState([]);
     
+    //===================================================\\
     //===== API KEY ===== \\
+    //===================================================\\
     const apiKey = "4464b123b33f0570ee7200292fffe1a2"
 
-    //===== API URL ===== \\
+    //===================================================\\
+    //===== POPULAR MOVIES API URL ===== \\
+    //===================================================\\
     async function getPopularMovies() {
         const url = `https://api.themoviedb.org/3/movie/popular?api_key=${apiKey}&language=en-US&page=1`
 
@@ -44,6 +50,9 @@ function Movies() {
         getPopularMovies();
     }, []);
 
+    //===================================================\\
+    //===== UPCOMING MOVIES API URL ===== \\
+    //===================================================\\
     async function getUpcomingMovies() {
         const url = `https://api.themoviedb.org/3/movie/upcoming?api_key=${apiKey}&language=en-US&page=1`
 
@@ -56,6 +65,9 @@ function Movies() {
         getUpcomingMovies();
     }, []);
 
+    //===================================================\\
+    //===== TOP RATED MOVIES API URL ===== \\
+    //===================================================\\
     async function getTopRatedMovies() {
         const url = `https://api.themoviedb.org/3/movie/top_rated?api_key=${apiKey}&language=en-US&page=1`
 
@@ -68,24 +80,21 @@ function Movies() {
         getTopRatedMovies();
     },[])
 
-    
-
+    //===================================================\\
+    //===== SELECTING A RANDOM MOVIE FOR GALLERY ===== \\
+    //===================================================\\
     useEffect(()=>{
         async function getRandomMovie() {
-            // const rando = data.results[Math.floor(Math.random() * data.results.length)]
-            // const url = `https://api.themoviedb.org/3/movie/${rando}/videos?api_key=${apiKey}&language=en-US`
             const url = `https://api.themoviedb.org/3/movie/popular?api_key=${apiKey}&language=en-US&page=1`
             const response = await fetch(url)
             const data = await response.json()
             const rando = data.results[Math.floor(Math.random() * data.results.length)]
             setRandomMovie(rando)
-            // return response
         }
         getRandomMovie();
     }, [])
     
     
-
     useEffect(()=>{
         async function getFeaturedMovie() {
             const url = `https://api.themoviedb.org/3/movie/${randomMovie.id}/videos?api_key=${apiKey}&language=en-US`
@@ -96,10 +105,10 @@ function Movies() {
         getFeaturedMovie();
     }, [randomMovie])
 
-
-
+    //===================================================\\
+    //===== POPULAR MOVIE TRAILERS AND CLICK EVENT ===== \\
+    //===================================================\\
     const handleCurrentPopularMovie = (e)=>{
-        // console.log(e.target.alt)
         const findCurrentPopularMovie = popularMovies.find((popularMovie)=>popularMovie.original_title === e.target.alt);
     
         setCurrentPopularMovie(findCurrentPopularMovie)
@@ -115,9 +124,10 @@ function Movies() {
         getPopularTrailer();
     }, [currentPopularMovie])
 
-    // console.log(popularTrailer)
+    //===================================================\\
+    //===== UPCOMING MOVIE TRAILERS AND CLICK EVENT ===== \\
+    //===================================================\\
     const handleCurrentUpcomingMovie = (e)=>{
-        // console.log(e.target.alt)
         const findCurrentUpcomingMovie = upcomingMovies.find((upcomingMovie)=>upcomingMovie.original_title === e.target.alt);
         
         setCurrentUpcomingMovie(findCurrentUpcomingMovie)
@@ -133,9 +143,10 @@ function Movies() {
         getUpcomingTrailer();
     }, [currentUpcomingMovie])
 
-
+    //===================================================\\
+    //===== TOP RATED MOVIE TRAILERS AND CLICK EVENT ===== \\
+    //===================================================\\
     const handleCurrentTopRatedMovie = (e)=>{
-        // console.log(e.target.alt)
         const findCurrentTopRatedMovie = topRatedMovies.find((topRatedMovie)=>topRatedMovie.original_title === e.target.alt);
         
         setCurrentTopRatedMovie(findCurrentTopRatedMovie)
@@ -151,29 +162,34 @@ function Movies() {
         getTopRatedTrailer();
     }, [currentTopRatedMovie])
 
-
+    //===================================================\\
+    //===== POPULAR MOVIE CASTS AND CREWS ===== \\
+    //===================================================\\
     useEffect(()=>{
-        async function getCasts() {
+        async function getPopularCasts() {
             const url = `https://api.themoviedb.org/3/movie/${currentPopularMovie.id}/credits?api_key=${apiKey}&language=en-US`
             const response = await fetch(url)
             const data = await response.json()
-            setCasts(data.cast)
+            setPopularCasts(data.cast)
         }
-        getCasts();
+        getPopularCasts();
     }, [currentPopularMovie])
 
     useEffect(()=>{
-        async function getCrews() {
+        async function getPopularCrews() {
             const url = `https://api.themoviedb.org/3/movie/${currentPopularMovie.id}/credits?api_key=${apiKey}&language=en-US`
             const response = await fetch(url)
             const data = await response.json()
-            setCrews(data.crew)
+            setPopularCrews(data.crew)
         }
-        getCrews();
+        getPopularCrews();
     }, [currentPopularMovie])
 
+    //===================================================\\
+    //===== UPCOMING MOVIE CASTS AND CREWS ===== \\
+    //===================================================\\
 
-    console.log(casts)
+    // console.log(casts)
     return (
         <>  
             <Nav />
@@ -212,7 +228,7 @@ function Movies() {
                     }
                 </div>
                 <div className="modal">
-                    {openPopularModal && <PopularModal closeModal={setPopularOpenModal} crews={crews} casts={casts} popularTrailer={popularTrailer} currentPopularMovie={currentPopularMovie} />}
+                    {openPopularModal && <PopularModal closeModal={setPopularOpenModal} popularCrews={popularCrews} popularCasts={popularCasts} popularTrailer={popularTrailer} currentPopularMovie={currentPopularMovie} />}
                 </div>
             </div>
             <div className="movie-section2">
