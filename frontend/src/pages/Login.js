@@ -27,12 +27,13 @@ function Login({loginData, setLoginData}) {
     function handleCreate(e) {
         navigate('/register')
     }
+    
     return (
         <div className="login-container">
             <div className="login-box">
                 <form className="login-form">
-                        <input type="text" value={loginData.username} onChange={handleChange} name="username" placeholder="username" className="login-input"/>
-                        <input type="password" value={loginData.password} onChange={handleChange} name="password" placeholder="password" className="login-input"/>
+                        <input type="text" value={loginData.username} onChange={handleChange} name="username" placeholder="Username" className="login-input"/>
+                        <input type="password" value={loginData.password} onChange={handleChange} name="password" placeholder="Password" className="login-input"/>
                         <button onClick={handleLogin} className="login-btn">Sign in</button>
                         <button onClick={handleCreate} className="create-btn">Create account</button>
                 </form>

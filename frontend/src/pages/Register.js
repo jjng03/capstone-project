@@ -24,14 +24,23 @@ function Register({registerData, setRegisterData}) {
         })
     }
     
+    function handleLogin(e) {
+        navigate('/login')
+    }
+
     return (
-        <div className="login-container">
-            <div className="login-box">
-                <form className="login-form">
-                        <input type="text" value={registerData.username} onChange={handleChange} name="username" placeholder="Username" className="login-input"/>
-                        <input type="text" value={registerData.email} onChange={handleChange} name="email" placeholder="Email address" className="login-input"/>
-                        <input type="password" value={registerData.password} onChange={handleChange} name="password" placeholder="Password" className="login-input"/>
+        <div className="register-container">
+            <div className="register-box">
+                <form className="register-form">
+                    <h1>Sign up for Jetflix!</h1>
+                    <label>Username</label>
+                        <input type="text" value={registerData.username} onChange={handleChange} name="username" placeholder="Enter your username" className="register-input"/>
+                    <label>Email</label>
+                        <input type="text" value={registerData.email} onChange={handleChange} name="email" placeholder="Enter your email address" className="register-input"/>
+                    <label>Password</label>
+                        <input type="password" value={registerData.password} onChange={handleChange} name="password" placeholder="Enter your password" className="register-input"/>
                         <button onClick={handleSubmit} className="login-btn">Sign up</button>
+                        <button onClick={handleLogin} className="create-btn">Back to login</button>
                 </form>
             </div>
         </div>
