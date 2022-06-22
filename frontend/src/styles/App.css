@@ -31,15 +31,18 @@
   font-size: 20px;
 }
 
-.cards {
+.popular-cards,
+.upcoming-cards,
+.toprated-cards {
   /* border: 1px solid white; */
   display: flex;
   align-items: center;
   height: 100%;
   width: 100%;
   padding: 10px;
-  overflow-x: scroll; 
-  overflow-y: hidden;
+  /* overflow-x: hidden; 
+  overflow-y: hidden; */
+  overflow: hidden;
   scrollbar-width: none;
   scroll-behavior: smooth;
   /* margin-left: 30px; */

@@ -40,16 +40,35 @@ function Movies() {
     //===================================================\\
     //===== HORIZONTAL SCROLL FUNCTION ===== \\
     //===================================================\\
-    function slideLeft() {
-        const cards = document.querySelector(".cards");
+    function slidePopularLeft() {
+        const cards = document.querySelector(".popular-cards");
         cards.scrollLeft = cards.scrollLeft - 1000;
     }
 
-    function slideRight() {
-        const cards = document.querySelector(".cards");
+    function slidePopularRight() {
+        const cards = document.querySelector(".popular-cards");
         cards.scrollLeft = cards.scrollLeft + 1000;
     }
 
+    function slideTopRatedLeft() {
+        const cards = document.querySelector(".toprated-cards");
+        cards.scrollLeft = cards.scrollLeft - 1000;
+    }
+
+    function slideTopRatedRight() {
+        const cards = document.querySelector(".toprated-cards");
+        cards.scrollLeft = cards.scrollLeft + 1000;
+    }
+
+    function slideUpcomingLeft() {
+        const cards = document.querySelector(".upcoming-cards");
+        cards.scrollLeft = cards.scrollLeft - 1000;
+    }
+
+    function slideUpcomingRight() {
+        const cards = document.querySelector(".upcoming-cards");
+        cards.scrollLeft = cards.scrollLeft + 1000;
+    }
     // function clickMute() {
     //     const mute = videoPlayer.querySelector(".mute");
     //     mute.
@@ -264,8 +283,8 @@ function Movies() {
                     <h1>Popular Movies</h1>
                 </div> */}
             
-                <MdChevronLeft size={40} className="slider-icon left" onClick={slideLeft}/>
-                    <div className="cards">
+                <MdChevronLeft size={40} className="slider-icon left" onClick={slidePopularLeft}/>
+                    <div className="popular-cards">
                         
                         {
                             popularMovies.map((popularMovie) => (
@@ -283,7 +302,7 @@ function Movies() {
                         }
                         
                     </div>
-                <MdChevronRight size={40} className="slider-icon right" onClick={slideRight}/>
+                <MdChevronRight size={40} className="slider-icon right" onClick={slidePopularRight}/>
                 
                     <div className="modal">
                         {openPopularModal && <PopularModal closeModal={setPopularOpenModal} popularCrews={popularCrews} popularCasts={popularCasts} popularTrailer={popularTrailer} currentPopularMovie={currentPopularMovie} />}
@@ -293,8 +312,8 @@ function Movies() {
                 <h1>Upcoming Movies</h1>
             </div>
             <div className="movie-section2">
-                <MdChevronLeft size={40} className="slider-icon left" onClick={slideLeft}/>
-                    <div className="cards">
+                <MdChevronLeft size={40} className="slider-icon left" onClick={slideUpcomingLeft}/>
+                    <div className="upcoming-cards">
                         {
                             upcomingMovies.map((upcomingMovie) => (
                                 <button className="card-btn" onClick={()=> {setUpcomingOpenModal(true)}}>
@@ -308,7 +327,7 @@ function Movies() {
                             ))
                         }
                     </div>
-                <MdChevronRight size={40} className="slider-icon right" onClick={slideRight}/>
+                <MdChevronRight size={40} className="slider-icon right" onClick={slideUpcomingRight}/>
                     <div className="modal">
                         {openUpcomingModal && <UpcomingModal closeModal={setUpcomingOpenModal} upcomingCrews={upcomingCrews} upcomingCasts={upcomingCasts} upcomingTrailer={upcomingTrailer} currentUpcomingMovie={currentUpcomingMovie} />}
                     </div>
@@ -317,8 +336,8 @@ function Movies() {
                 <h1>Top Rated Movies</h1>
             </div>
             <div className="movie-section3">
-                <MdChevronLeft size={40} className="slider-icon left" onClick={slideLeft}/>
-                    <div className="cards">
+                <MdChevronLeft size={40} className="slider-icon left" onClick={slideTopRatedLeft}/>
+                    <div className="toprated-cards">
                         {
                             topRatedMovies.map((topRatedMovie) => (
                                 <button className="card-btn" onClick={()=> {setTopRatedOpenModal(true)}}>
@@ -332,7 +351,7 @@ function Movies() {
                             ))
                         }
                     </div>
-                <MdChevronRight size={40} className="slider-icon right" onClick={slideRight}/>
+                <MdChevronRight size={40} className="slider-icon right" onClick={slideTopRatedRight}/>
                     <div className="modal">
                         {openTopRatedModal && <TopRatedModal closeModal={setTopRatedOpenModal} topRatedTrailer={topRatedTrailer} currentTopRatedMovie={currentTopRatedMovie} />}
                     </div>
