@@ -257,7 +257,7 @@ function Movies() {
             <Nav />
             { 
                 featuredMovie && featuredMovie.map((featured) => (
-                    featured.type === "Trailer" && featured.name === "Official Trailer" || featured.name === "Official HBO Max Trailer" ?
+                    (featured.type === "Trailer" && featured.name === "Official Trailer") || (featured.name === "Official HBO Max Trailer") ?
                     <div className="gallery">
                         <iframe
                         src={ `https://www.youtube.com/embed/${featured.key}?autoplay=1&mute=1&showinfo=0&controls=1&loop=1&playlist=${featured.key}` }

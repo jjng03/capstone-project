@@ -13,7 +13,7 @@ function TopRatedModal( {closeModal, currentTopRatedMovie, topRatedTrailer}) {
                     </div>
                     { 
                     topRatedTrailer && topRatedTrailer.map((topRated) => (
-                        topRated.type === "Trailer" && topRated.name === "Official Trailer" || topRated.name === "Official HBO Max Trailer" ?
+                        (topRated.type === "Trailer" && topRated.name === "Official Trailer") || (topRated.name === "Official HBO Max Trailer") ?
                             <div className="gallery">
                                 <iframe
                                 src={`https://www.youtube.com/embed/${topRated.key}?autoplay=0&mute=0&showinfo=0&controls=1`}

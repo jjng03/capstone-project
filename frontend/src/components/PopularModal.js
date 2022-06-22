@@ -13,7 +13,7 @@ function PopularModal( {closeModal, currentPopularMovie, popularTrailer, popular
                     </div>
                     { 
                     popularTrailer && popularTrailer.map((popular) => (
-                        popular.type === "Trailer" && popular.name === "Official Trailer" || popular.name === "Official HBO Max Trailer" ?
+                        (popular.type === "Trailer" && popular.name === "Official Trailer") || (popular.name === "Official HBO Max Trailer") ?
                             <div className="gallery">
                                 <iframe
                                 // key={popular.id}
@@ -36,7 +36,7 @@ function PopularModal( {closeModal, currentPopularMovie, popularTrailer, popular
                         {
                             popularCasts && popularCasts.map((popularCast) => (
                                 // cast.order === 0 || cast.order === 1 || cast.order === 2 ?
-                                popularCast.known_for_department === "Acting" && popularCast.order === 0 || popularCast.order === 1 || popularCast.order === 2 ?
+                                (popularCast.known_for_department === "Acting" && popularCast.order === 0) || (popularCast.order === 1) || (popularCast.order === 2) ?
                                     <p className="actor-name">{popularCast.name},</p>
                                 : null
                         ))

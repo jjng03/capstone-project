@@ -13,7 +13,7 @@ function UpcomingModal( {closeModal, currentUpcomingMovie, upcomingTrailer, upco
                     </div>
                     { 
                     upcomingTrailer && upcomingTrailer.map((upcoming) => (
-                        upcoming.type === "Trailer" && upcoming.name === "Official Trailer" || upcoming.name === "Official HBO Max Trailer" ?
+                        (upcoming.type === "Trailer" && upcoming.name === "Official Trailer") || (upcoming.name === "Official HBO Max Trailer") ?
                             <div className="gallery">
                                 <iframe
                                 src={`https://www.youtube.com/embed/${upcoming.key}?autoplay=0&mute=0&showinfo=0&controls=1`}
@@ -35,7 +35,7 @@ function UpcomingModal( {closeModal, currentUpcomingMovie, upcomingTrailer, upco
                         {
                             upcomingCasts && upcomingCasts.map((upcomingCast) => (
                                 // cast.order === 0 || cast.order === 1 || cast.order === 2 ?
-                                upcomingCast.known_for_department === "Acting" && upcomingCast.order === 0 || upcomingCast.order === 1 || upcomingCast.order === 2 ?
+                                (upcomingCast.known_for_department === "Acting" && upcomingCast.order === 0) || (upcomingCast.order === 1) || (upcomingCast.order === 2) ?
                                     <p className="actor-name">{upcomingCast.name},</p>
                                 : null
                         ))
